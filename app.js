@@ -1,21 +1,37 @@
 let equal_pressed = 0;
 
-//Accessing all buttons, except for "C"&"DEL"
-
+// Accessing all buttons, except for "C" & "DEL"
 let button_input = document.querySelectorAll(".input-button");
 
-//Accessing input, clear & erase
+// Accessing input, clear & erase
 let input = document.getElementById("input");
+let equal = document.getElementById("equal");
+let clear = document.getElementById("clear");
+let erase = document.getElementById("erase");
 
-let input = document.getElementById("equal");
+window.onload = () => {
+    input.value = "";
+};
 
-let input = document.getElementById("clear");
+// Accessing classes using the "forEach" method
+button_input.forEach(button => {
+    button.addEventListener("click", () => {
+        input.value += button.value;
+    });
+});
 
-let input = document.getElementById("earse");
+// Implementing clear button functionality
+clear.addEventListener("click", () => {
+    input.value = "";
+});
 
-window.onload = () =>{
-    input.value = "";;
-}
+// Implementing erase button functionality
+erase.addEventListener("click", () => {
+    input.value = input.value.slice(0, -1);
+});
 
-//Accessing classes using the "forEach" method
-button_input.
+// Implementing equal button functionality
+equal.addEventListener("click", () => {
+    const result = eval(input.value);
+    input.value = result;
+});
